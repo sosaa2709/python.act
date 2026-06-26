@@ -1,0 +1,4 @@
+print ("Ingrese un numero entero y se mostrara el cuadrado del mismo")
+n=int(input())
+res=n*n
+print ("El cuadrado de este numero es: ", res)
