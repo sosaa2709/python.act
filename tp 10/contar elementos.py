@@ -13,6 +13,6 @@ for i in range(cantidad):
     numeros.append(numero)
 
 resultado = contar_ele(numeros)
-
+ 
 print ("Los numeros ingresados fueron: ", numeros)
 print ("La cantidad de elementos es: ", resultado)

@@ -10,7 +10,7 @@ cantidad=int(input("Cuantos numeros desea ingresar?: "))
 
 for i in range(cantidad):
     numero=int(input(f"Ingrese el numero {i+1}: "))
-    numeros(numero)
+    numeros.append(numero)
 
 resultado = suma_num(numeros)
 
