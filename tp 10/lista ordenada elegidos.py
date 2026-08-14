@@ -3,7 +3,7 @@ def ordenar_lista(lista):
 
 numeros = []
 
-cantidad=int(input("Ingrese la cantidad de numeros que podra tener la lista: "))
+cantidad=int(input("Ingrese la cantidad de numeros que podra tener la lista:  "))
 
 for i in range(cantidad):
     numero=int(input(f"Ingrese el numero {i+1}: "))
