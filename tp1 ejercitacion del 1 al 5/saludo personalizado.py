@@ -25,7 +25,6 @@ boton.pack()
 etiqueta_resultado=tk.Label(ventana, text="")
 etiqueta_resultado.pack()
 
-boton2=tk.Button(ventana, text="Salir", command=ventana.destroy)
-boton2.pack()
+boton2=tk.Button(ventana, text="Salir", command=ventana.destroy).pack()
 
 ventana.mainloop()
