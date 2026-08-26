@@ -32,7 +32,7 @@ def calc():
         precio = float(entrada_precio.get())
         cantidad = int(entrada_cantidad.get())
     except ValueError:
-        messagebox.showerror("Error", "Complete el nombre y use valores positivos")
+        messagebox.showerror("Error.", "Complete el nombre y use valores positivos.")
         return
 
     subtotal = precio * cantidad
