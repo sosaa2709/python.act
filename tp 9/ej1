@@ -1,0 +1,6 @@
+print ("Ingrese el importe de la compra y se calculara el precio final")
+imp=int(input())
+if imp>100000:
+    print ("El precio final es: ", imp*0.90*1,21)
+else:
+    print ("El precio final es: ", imp*1,21)
