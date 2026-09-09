@@ -1,0 +1,72 @@
+import tkinter as tk
+from tkinter import ttk
+
+ventana = tk.Tk()
+ventana.title("Agendas de contactos.")
+ventana.geometry("800x600")
+
+contactos = []
+
+def abrir_ventana_agregar():
+    ventana_nueva = tk.Toplevel(ventana)
+    ventana_nueva.title("Agregar contacto")
+    ventana_nueva.geometry("400x250")
+
+    etiqueta_nombre = tk.Label(ventana_nueva, text="Nombre: ")
+    etiqueta_nombre.pack()
+    entrada_nombre = tk.Entry(ventana_nueva)
+    entrada_nombre.pack()
+
+    etiqueta_apellido = tk.Label(ventana_nueva, text="Apellido: ")
+    etiqueta_apellido.pack()
+    entrada_apellido = tk.Entry(ventana_nueva)
+    entrada_apellido.pack()
+
+    etiqueta_numero = tk.Label(ventana_nueva, text="Número: ")
+    etiqueta_numero.pack()
+    entrada_numero = tk.Entry(ventana_nueva)
+    entrada_numero.pack()
+
+    etiqueta_correo = tk.Label(ventana_nueva, text="Correo: ")
+    etiqueta_correo.pack()
+    entrada_correo = tk.Entry(ventana_nueva)
+    entrada_correo.pack()
+
+    def mostrar_cont():
+        nombre = entrada_nombre.get().strip()
+        apellido = entrada_apellido.get().strip()
+        numero = entrada_numero.get().strip()
+        correo = entrada_correo.get().strip()
+
+        if not nombre or not apellido or not numero or not correo:
+            return
+
+        contacto = f"{nombre} {apellido} - {numero} - {correo}"
+        contactos.append(contacto)
+        lista_contactos.insert(tk.END, contacto)
+        ventana_nueva.destroy()
+
+    boton_mostrar = ttk.Button(ventana_nueva, text="Mostrar datos", command=mostrar_cont)
+    boton_mostrar.pack()
+
+def eliminar():
+    seleccionado=lista_contactos.curselection()
+    if seleccionado:
+        lista_contactos.delete(seleccionado[0])
+
+lbl_contactos = ttk.Label(ventana, text="Contactos")
+lbl_contactos.pack()
+
+lista_contactos = tk.Listbox(ventana, width=70, height=15)
+lista_contactos.pack()
+
+apretar_boton = ttk.Button(ventana, text="Agregar contacto", command=abrir_ventana_agregar)
+apretar_boton.pack()
+
+boton_eli=ttk.Button(ventana, text="Borrar contacto", command=eliminar)
+boton_eli.pack()
+
+boton_cerrar=ttk.Button(ventana, text="Cerrar", command=ventana.destroy)
+boton_cerrar.pack()
+
+ventana.mainloop()
