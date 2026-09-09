@@ -1,29 +1,40 @@
 import tkinter as tk
 from tkinter import ttk
 
-ventana=tk.Tk()
-ventana.title("Administracion de alumnos")
-ventana.geometry("500x300")
+ventana = tk.Tk()
+ventana.title("Agenda")
+ventana.geometry("500x400")
 
-notebook=ttk.Notebook(ventana)
+notebook = ttk.Notebook(ventana)
 notebook.pack(fill="both", expand=True)
 
-pestaña1=ttk.Frame(notebook)
-notebook.add(pestaña1, text="Alumnos")
-etiqueta_nombre=ttk.Label(pestaña1, text="Ingrese el nombre").pack()
-entrada_nombre=ttk.Entry(pestaña1)
-entrada_nombre.pack()
-etiqueta_apellido=ttk.Label(pestaña1, text="Ingrese el apellido").pack()
-entrada_apellido=ttk.Entry(pestaña1)
-entrada_apellido.pack()
-etiqueta_año=tk.Label(pestaña1, text="Seleccione el año: ").pack()
-años= ["1", "2", "3", "4", "5", "6"]
-año_var = tk.StringVar()
-combo_año = ttk.Combobox(pestaña1, textvariable=año_var, values=años, state="readonly")
-combo_año.set("1")
-combo_año.pack()
+# Pestaña Contactos
+pestaña_contactos = ttk.Frame(notebook)
+notebook.add(pestaña_contactos, text="Contactos")
 
-pestaña2=ttk.Frame(notebook)
-notebook.add(pestaña2, text="Información")
+# Pestaña Agregar
+pestaña_agregar = ttk.Frame(notebook)
+notebook.add(pestaña_agregar, text="Agregar")
+
+# Campos
+tk.Label(pestaña_agregar, text="Nombre:").pack()
+entrada_nombre = tk.Entry(pestaña_agregar)
+entrada_nombre.pack()
+
+tk.Label(pestaña_agregar, text="Apellido:").pack()
+entrada_apellido = tk.Entry(pestaña_agregar)
+entrada_apellido.pack()
+
+def mostrar():
+    nombre = entrada_nombre.get()
+    apellido = entrada_apellido.get()
+    texto = f"{nombre} {apellido}"
+    etiqueta_resultado.config(text=texto)
+
+etiqueta_resultado = tk.Label(pestaña_contactos, text="Resultado aparecerá aquí")
+etiqueta_resultado.pack(pady=20)
+
+boton = tk.Button(pestaña_agregar, text="Mostrar", command=mostrar)
+boton.pack(pady=10)
 
 ventana.mainloop()
