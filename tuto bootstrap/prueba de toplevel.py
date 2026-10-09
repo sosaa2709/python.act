@@ -9,7 +9,8 @@ def abrir_ventana():
     ventana.title("Ventana secundaria")
     ventana.geometry("400x250")
 
-    ttk.Label(ventana, text="Esta es una ventana secundaria").pack(pady=40)
+    ttk.Label(ventana, text="Ingrese sus datos ").pack(pady=40)
+
     ttk.Button(ventana, text="Cerrar", command=ventana.destroy).pack(pady=50)
 
 ttk.Label(app, text="Presione el siguiente boton para abrir la 2da ventana.").pack()
