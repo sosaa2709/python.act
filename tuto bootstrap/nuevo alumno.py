@@ -41,12 +41,21 @@ def nuevo_alum():
 def alumnos():
     alum=ttk.Toplevel(app)
     alum.title("Alumnos.")
-    alum.geometry("400x200")
+    alum.geometry("400x300")
     alum.grab_set()
     lista=ttk.Listbox(alum, height=10, width=50)
     lista.pack()
     for alumno in alumnos_guardados:
         lista.insert("end", alumno)
+    def borrar_alu():
+        seleccionados=lista.curselection()
+        if seleccionados:
+            aluu=seleccionados[0]
+            lista.delete(aluu)
+            alumnos_guardados.pop(aluu)
+
+    ttk.Button(alum, text="Eliminar alumno", command=borrar_alu, bootstyle="danger").pack(pady=10)
+    ttk.Button(alum, text="Salir", command=alum.destroy).pack(pady=10)
 
 
 def config():
