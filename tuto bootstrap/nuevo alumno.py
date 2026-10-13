@@ -1,9 +1,11 @@
 import ttkbootstrap as ttk
 from ttkbootstrap import Messagebox
 app=ttk.Window(themename="solar")
-app.title("Sistema Académido")
-app.geometry("700x450")
+app.title("Sistema Académido.")
+app.geometry("500x280")
 alumnos_guardados=[]
+
+ttk.Label(app, text="Bienvenido al sistema de gestion.", anchor="w").pack(fill="x", padx=10, pady=20)
 
 def nuevo_alum():
     nuev=ttk.Toplevel(app)
@@ -13,15 +15,17 @@ def nuevo_alum():
     ttk.Label(nuev, text="Nombre y apellido: ").pack()
     entry=ttk.Entry(nuev)
     entry.pack()
+    ttk.Label(nuev, text="Año:").pack()
     opciones= ["1º", "2º", "3º", "4º", "5º", "6º"]
     seleccion=ttk.Combobox(nuev, values=opciones, bootstyle="info")
     seleccion.set("1º")
     seleccion.pack()
-    opciones_carrera=("ingenieria", "medicina", "perito", "contaduria")
+    ttk.Label(nuev,text="Carrera:").pack()
+    opciones_carrera=("Ingenieria", "Medicina", "Perito", "Contaduria")
     carrera_sele=ttk.Combobox(nuev, values=opciones_carrera, bootstyle="info")
     carrera_sele.set("ingenieria")
-    carrera_sele.pack()
 
+    carrera_sele.pack()
     def guardar_alumno():
         nombre=entry.get().strip()
         if not nombre:
@@ -31,12 +35,12 @@ def nuevo_alum():
         nuev.destroy()
 
     def message():
-        ttk.Messagebox.yesno("Desea salir?")
-
-    ttk.Button(nuev, text="Salir", command=message).pack()
-
-
+        respuesta=Messagebox.yesno("Desea salir?", text="Confirmar salida?", parent=nuev)
+        if respuesta == "Yes":
+            nuev.destroy()
+        
     ttk.Button(nuev, text="Guardar", command=guardar_alumno, bootstyle="success").pack(pady=10)
+    ttk.Button(nuev, text="Salir", command=message, bootstyle="warning").pack(pady=10)
     
 def alumnos():
     alum=ttk.Toplevel(app)
@@ -54,26 +58,39 @@ def alumnos():
             lista.delete(aluu)
             alumnos_guardados.pop(aluu)
 
-    ttk.Button(alum, text="Eliminar alumno", command=borrar_alu, bootstyle="danger").pack(pady=10)
-    ttk.Button(alum, text="Salir", command=alum.destroy).pack(pady=10)
-
-
-def config():
-    confi=ttk.Toplevel(app)
-    confi.title("Configuracion.")
-    confi.geometry("400x200")
-    confi.grab_set()
+    ttk.Button(alum, text="Eliminar alumno", command=borrar_alu, bootstyle="dark").pack(pady=10)
+    def message():
+        respuesta=Messagebox.yesno("Desea salir?", text="Confirmar salida?", parent=alum)
+        if respuesta == "Yes":
+           alum.destroy()
+           
+   
+    ttk.Button(alum, text="Salir", command=message, bootstyle="warning").pack(pady=10)
 
 def acerca():
     acer=ttk.Toplevel(app)
     acer.title("Acerca de")
     acer.geometry("400x200")
     acer.grab_set()
+    ttk.Label(acer, text='Nombre del programa: "Nuevo alumno de IMCO".').pack(pady=10)
+    ttk.Label(acer, text="Nombre del autor: Lautaro Sosa.").pack(pady=10)
+    ttk.Label(acer, text="Version: 1.18").pack(pady=10)
+    ttk.Label(acer, text="Año: 2026").pack(pady=10)
+    def message():
+        respuesta=Messagebox.yesno("Desea salir?", text="Confirmar salida?",  parent=acer, )
+        if respuesta == "Yes":
+            acer.destroy()
+    ttk.Button(acer, text="Salir",command=message, bootstyle="warning").pack(pady=8)
 
-ttk.Button(app, text="Alumnos", command=alumnos, bootstyle="primary").pack(pady=13)
-ttk.Button(app, text="Nuevo alumno", command=nuevo_alum, bootstyle="secondary").pack(pady=13)
-ttk.Button(app, text="Configuracion", command=config, bootstyle="primary").pack(pady=13)
-ttk.Button(app, text="Acerca de", command=acerca, bootstyle="secondary").pack(pady=13)
-ttk.Button(app, text="Salir", command=app.destroy, bootstyle="warning").pack(pady=13)
+ttk.Button(app, text="Alumnos", command=alumnos, bootstyle="secondary").pack(fill="x", padx=30, pady=10)
+ttk.Button(app, text="Nuevo alumno", command=nuevo_alum, bootstyle="secondary").pack(fill="x", padx=30, pady=10)
+ttk.Button(app, text="Acerca de", command=acerca, bootstyle="secondary").pack(fill="x", padx=30, pady=10)
+def message():
+    respuesta=Messagebox.yesno("Desea salir?", text="Confirmar salida?",  parent=app, )
+    if respuesta == "Yes":
+        app.destroy()
+        
+
+ttk.Button(app, text="Salir", command=message, bootstyle="warning").pack(fill="x", padx=30, pady=10)
 
 app.mainloop()
