@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import json
+
+persona = {"nombre": "Ana", "edad": 20}
+texto = json.dumps(persona)
+
+print(texto)
+=======
 import json  # Permite leer y guardar los datos en formato JSON.
 from pathlib import Path  # Facilita crear y manejar rutas de archivos.
 import ttkbootstrap as ttk  # Importa ttkbootstrap con el alias corto ttk.
@@ -254,3 +262,4 @@ tabla.bind("<<TreeviewSelect>>", cargar_seleccion)  # Carga los datos en el form
 cargar_tabla()  # Muestra en la tabla los datos que se cargaron del JSON.
 entry_nombre.focus()  # Deja el cursor listo en el campo de nombre.
 app.mainloop()  # Inicia el ciclo de eventos y mantiene abierta la aplicación.
+>>>>>>> a07a53a47e90b2bfaec14ec34531a8282e7a14f4
